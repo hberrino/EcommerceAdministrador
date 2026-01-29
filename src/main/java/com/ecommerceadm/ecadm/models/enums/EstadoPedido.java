@@ -1,5 +1,5 @@
 package com.ecommerceadm.ecadm.models.enums;
 
-public enum EstadoPago {
+public enum EstadoPedido {
     CREADO, PAGADO, ENVIADO, CANCELADO, DEVUELTO, COMPLETADO
 }

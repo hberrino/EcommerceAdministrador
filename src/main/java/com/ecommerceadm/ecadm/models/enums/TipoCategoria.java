@@ -1,4 +1,4 @@
-package com.ecommerceadm.ecadm.models.enum;
+package com.ecommerceadm.ecadm.models.enums;
 
 public enum TipoCategoria {
     ELECTRONICA,
