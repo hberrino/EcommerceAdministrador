@@ -1,4 +1,4 @@
-package com.ecommerceadm.ecadm.services;
+package com.ecommerceadm.ecadm.services.pedido;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface PedidoService {
 
 
     PedidoResponseDTO obtenerPedidoPorID (Long id);
-    List<PedidoResponseDTO> obtenerPedidosPorClienteID (Long clienteId);
+    List<PedidoResponseDTO> obtenerPedidosPorClienteId (Long clienteId);
     List<PedidoResponseDTO> obtenerPedidosPorDireccion (String direccion);
     List<PedidoResponseDTO> obtenerTodosLosPedidos ();
     PedidoResponseDTO crearPedido (PedidoCreateDTO pedidoCreate);

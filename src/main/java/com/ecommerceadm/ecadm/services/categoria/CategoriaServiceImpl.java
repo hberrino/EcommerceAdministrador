@@ -1,5 +1,6 @@
-package com.ecommerceadm.ecadm.services;
+package com.ecommerceadm.ecadm.services.categoria;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import com.ecommerceadm.ecadm.dto.CategoriaDTOs.CategoriaCreateDTO;
 import com.ecommerceadm.ecadm.dto.CategoriaDTOs.CategoriaResponseDTO;
 import com.ecommerceadm.ecadm.dto.CategoriaDTOs.CategoriaUpdateDTO;
 import com.ecommerceadm.ecadm.models.Categoria;
+import com.ecommerceadm.ecadm.models.enums.TipoCategoria;
 import com.ecommerceadm.ecadm.repository.CategoriaRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -29,8 +31,8 @@ public class CategoriaServiceImpl implements CategoriaService {
         return dto;
     }
     @Override
-    public List<String> obtenerTiposCategoria() {
-        return categoriaRepository.findAllTiposCategoria();
+    public List<TipoCategoria> obtenerTiposCategoria() {
+        return Arrays.asList(TipoCategoria.values());
     }
     @Override
     public List<CategoriaResponseDTO> obtenerTodasCategorias() {

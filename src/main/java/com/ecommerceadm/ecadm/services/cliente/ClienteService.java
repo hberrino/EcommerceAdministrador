@@ -1,4 +1,4 @@
-package com.ecommerceadm.ecadm.services;
+package com.ecommerceadm.ecadm.services.cliente;
 
 import java.util.List;
 
@@ -15,7 +15,6 @@ public interface ClienteService {
       void eliminarCliente (Long id);
       ClienteResponseDTO actualizarCliente (Long id, ClienteUpdateDTO clienteUpdate);
       List<ClienteResponseDTO> ListarClientes ();
-
 
     
 }
