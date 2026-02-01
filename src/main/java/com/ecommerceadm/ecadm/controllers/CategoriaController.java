@@ -34,7 +34,7 @@ public class CategoriaController {
     public ResponseEntity<List<CategoriaResponseDTO>> listarCategorias (){
         return ResponseEntity.ok(categoriaService.obtenerTodasCategorias());
     }
-    @GetMapping("/tipos")
+    @GetMapping("/tipo")
     public ResponseEntity<List<TipoCategoria>> obtenerTipoCategorias (){
         return ResponseEntity.ok(categoriaService.obtenerTiposCategoria());
     }

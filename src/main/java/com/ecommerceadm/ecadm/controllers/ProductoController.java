@@ -37,11 +37,11 @@ public class ProductoController {
     public ResponseEntity<List<ProductoResponseDTO>> obtenerTodosLosProductos(){
         return ResponseEntity.ok(productoService.obtenerTodosLosProductos());
     }
-    @GetMapping("/nombres/{nombre}")
+    @GetMapping("/nombre/{nombre}")
     public ResponseEntity<ProductoResponseDTO> obtenerProductoPorNombre (@PathVariable String nombre){
         return ResponseEntity.ok(productoService.obtenerProductoPorNombre(nombre));
     }
-    @GetMapping("/categorias/{tipoCategoria}")
+    @GetMapping("/categoria/{tipoCategoria}")
     public ResponseEntity<List<ProductoResponseDTO>> obtenerProductosPorCategoria (@PathVariable TipoCategoria tipoCategoria){
         return ResponseEntity.ok(productoService.obtenerProductosPorCategoria(tipoCategoria));
     }
