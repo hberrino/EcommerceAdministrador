@@ -7,6 +7,7 @@ import com.ecommerceadm.ecadm.models.enums.TipoCategoria;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,6 +30,6 @@ public class Categoria {
     @Enumerated(EnumType.STRING)
     private TipoCategoria tipo;
     private String descripcion;
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Producto> productos;
 }
