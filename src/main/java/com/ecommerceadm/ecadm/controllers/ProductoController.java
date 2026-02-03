@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -28,34 +29,70 @@ import lombok.RequiredArgsConstructor;
 public class ProductoController {
 
     private final ProductoService productoService;
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<ProductoResponseDTO> obtenerProductoPorID (@PathVariable Long id){
-        return ResponseEntity.ok(productoService.obtenerProductoPorID(id));
+    public ResponseEntity<ProductoResponseDTO> obtenerProductoPorID(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+            productoService.obtenerProductoPorID(id)
+        );
     }
-    @GetMapping()
-    public ResponseEntity<List<ProductoResponseDTO>> obtenerTodosLosProductos(){
-        return ResponseEntity.ok(productoService.obtenerTodosLosProductos());
+
+    @GetMapping
+    public ResponseEntity<List<ProductoResponseDTO>> obtenerTodosLosProductos() {
+        return ResponseEntity.ok(
+            productoService.obtenerTodosLosProductos()
+        );
     }
+
     @GetMapping("/nombre/{nombre}")
-    public ResponseEntity<ProductoResponseDTO> obtenerProductoPorNombre (@PathVariable String nombre){
-        return ResponseEntity.ok(productoService.obtenerProductoPorNombre(nombre));
+    public ResponseEntity<ProductoResponseDTO> obtenerProductoPorNombre(
+            @PathVariable String nombre) {
+
+        return ResponseEntity.ok(
+            productoService.obtenerProductoPorNombre(nombre)
+        );
     }
+
     @GetMapping("/categoria/{tipoCategoria}")
-    public ResponseEntity<List<ProductoResponseDTO>> obtenerProductosPorCategoria (@PathVariable TipoCategoria tipoCategoria){
-        return ResponseEntity.ok(productoService.obtenerProductosPorCategoria(tipoCategoria));
+    public ResponseEntity<List<ProductoResponseDTO>> obtenerProductosPorCategoria(
+            @PathVariable TipoCategoria tipoCategoria) {
+
+        return ResponseEntity.ok(
+            productoService.obtenerProductosPorCategoria(tipoCategoria)
+        );
     }
-    @PostMapping()
-    public ResponseEntity<ProductoResponseDTO> crearProducto (@RequestBody @Valid ProductoCreateDTO productoCreate){
-        ProductoResponseDTO nuevo = productoService.crearProducto(productoCreate);
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevo);
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping
+    public ResponseEntity<ProductoResponseDTO> crearProducto(
+            @RequestBody @Valid ProductoCreateDTO productoCreate) {
+
+        ProductoResponseDTO nuevo =
+                productoService.crearProducto(productoCreate);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(nuevo);
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}")
-    public ResponseEntity<ProductoResponseDTO> actualizarProducto (@PathVariable Long id, @RequestBody ProductoUpdateDTO productoUpdate){
-        return ResponseEntity.ok(productoService.actualizarProducto(id, productoUpdate));
+    public ResponseEntity<ProductoResponseDTO> actualizarProducto(
+            @PathVariable Long id,
+            @RequestBody ProductoUpdateDTO productoUpdate) {
+
+        return ResponseEntity.ok(
+            productoService.actualizarProducto(id, productoUpdate)
+        );
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarProducto (@PathVariable Long id){
+    public ResponseEntity<Void> eliminarProducto(
+            @PathVariable Long id) {
+
         productoService.eliminarProducto(id);
         return ResponseEntity.noContent().build();
     }
